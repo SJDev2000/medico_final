@@ -34,6 +34,7 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
       run: |
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - uses: actions/checkout@v2
     - name: Docker build
       run: |
         docker build . --file Dockerfile --tag saiyam611/medico:latest
