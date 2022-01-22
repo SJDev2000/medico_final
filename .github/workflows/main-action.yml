@@ -40,7 +40,7 @@ jobs:
     - name: Docker push
       run: |
         docker push saiyam611/medico
-  # Deploy to aws ec2
+  # Deploy to aws ec2 instance
   deploy:
     needs:
       - test-and-build
