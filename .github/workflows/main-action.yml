@@ -78,10 +78,10 @@ jobs:
               echo "DIRECTORY EXISTS"
               cd medico_final
               echo hi
-              git checkout master &&
+              git checkout main &&
               git fetch --all &&
-              git reset --hard origin/master &&
-              git pull origin master
+              git reset --hard origin/main &&
+              git pull origin main
               sudo docker-compose up -d --build
             else
               echo "NOT EXISTS"
