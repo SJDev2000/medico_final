@@ -85,8 +85,8 @@ jobs:
               sudo docker-compose up -d --build
             else
               echo "NOT EXISTS"
-              cd medico_final
               git clone https://github.com/SJDev2000/medico_final.git
+              cd medico_final
               echo hi
               sudo docker-compose up -d --build
             fi
