@@ -1,0 +1,161 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic </title>
+    
+	<!-- <link rel="stylesheet" type="text/css" href="css/opensans-font.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css"> -->
+    <link rel='stylesheet' href="{{url_for('static', filename='doctorDashboard/style2.css')}}" />
+    <link rel='stylesheet' href="{{url_for('static', filename='doctorDashboard/style.css')}}" />
+    <link rel='stylesheet' href="{{url_for('static', filename='patientDashboard/patientprof.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="menu-wrapper">
+        <div class="sidebar-header">
+            <div class="sideBar">
+                <div><img src='https://img.icons8.com/external-filled-outline-satawat-anukul/64/000000/external-medical-medical-filled-outline-filled-outline-satawat-anukul-40.png' /></div>
+                <ul>
+                    <a style="text-decoration: none; color: white;" href="/patientDashboard"><li class="selected"><i class="fas fa-home"></i><label>Dashboard</label></li></a>
+                    <a style="text-decoration: none; color: white;" href="/updateProfile"><li><i class="fas fa-user-md"></i><label>Profile</label></li></a>
+                    <a style="text-decoration: none; color: white;" href="/doctorProfiles"><li><i class="fas fa-user-md"></i><label>Doctors</label></li></a>
+                    <a style="text-decoration: none; color: white;" href="/vitalProfiles"><li><i class="fas fa-user-md"></i><label>Vitals</label></li></a>
+                </ul> <span class="cross-icon"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="backdrop"></div>
+            <div class="content">
+                <header>
+                    <div class="menu-button" id='desktop'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="menu-button" id='mobile'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <svg style="margin-left:75%;" class="modesvg" width="45" height="45" viewBox="0 0 55 55" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path class="sun"
+                            d="M55 27.5C55 42.6878 42.6878 55 27.5 55C12.3122 55 0 42.6878 0 27.5C0 12.3122 12.3122 0 27.5 0C42.6878 0 55 12.3122 55 27.5Z"
+                            fill="#FBF56E" />
+                    </svg>
+          <button onclick="window.location.href='/patientLogout'" class="button-69 button-31" role="button"><i class="fas fa-sign-out-alt"></i></button>
+                    
+                </header>
+                <div class="content-data"> 
+                    <div class="hi">
+                        <div class="outer">
+                    
+                            <button data-modal-target="#modal" class="btn">Edit</button>
+                            <div class="modal" id="modal">
+                              <div class="modal-header">
+                                <div class="title">Personal Details</div>
+                               
+                              </div>
+                              <div class="modal-body">
+                               <form action="/uploadProfile" enctype="multipart/form-data" method ="POST">
+                                <button data-close-button class="close-button">&times;</button>
+                                    <div class="form-holder form-holder-2">
+                                     <legend>Full Name</legend>
+                                    <input type="text" class="form-control" id="full-name" name="fullname" placeholder="Enter Your Name" required>
+                                    </div>
+                                    <div class="form-holder form-holder-2">
+                                        <legend>Age</legend>
+                                       <input type="number" class="form-control" id="age" name="age" placeholder="age" required>
+                                       </div>
+                                       <div class="form-holder form-holder-2">
+                                        <legend>Gender</legend>
+                                       <input type="text" class="form-control" id="gender" name="gender" placeholder="gender(f/m)" required>
+                                       </div>
+                                       <div class="form-holder form-holder-2">
+                                        <legend>Address</legend>
+                                       <input type="text" class="form-control" id="address" name="address" placeholder="House No.,street,city,state" required>
+                                       </div>
+                                       <div class="form-holder form-holder-2">
+                                        <legend>Phone number</legend>
+                                       <input type="number" class="form-control" id="phno." name="phone" placeholder="(00)(000)(00000)" required>
+                                       </div>
+                                       <!-- <div class="form-holder form-holder-2">
+                                        
+                                            <legend>Image</legend>
+                                            <input type="file" id="myFile" name="pic" accept="images/*">
+                                        
+                                    </div> -->
+                                    <button data-submit-button class="btn1">Submit</button>
+
+                                
+                               </form>
+                              </div>
+                            </div>
+                            <div id="overlay"></div>
+                       
+                        <div class="profile_dp icon-camera" id="profile_img" onclick="showProPicOptions(this);">
+                        <div class="img" style="background-image: url(&quot;https://contacts.zoho.com/file?fs=thumb&amp;ID=760417531&amp;nps=404&quot;);">
+                        </div>
+                        <label id="file_lab">
+                            {% if patient.image != None %}
+                            <img onload="setPhotoSize(this)" id="dp_pic" draggable="false" onerror="handleDpOption(this)" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" style="width: 100px; height: 100px;">
+                            {% else %}
+                            <img onload="setPhotoSize(this)" id="dp_pic" draggable="false" onerror="handleDpOption(this)" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" style="width: 100px; height: 100px;">
+                            {% endif %}
+                        </label>
+                    </div>
+                    
+                    <div class="profile_info">
+                        <div class="profile_name" id="profile_name"><b>{{patient.fullname}}</b></div>
+                    </div>
+                    <div class="column">
+                    <div class="row" tabindex="0">				
+                        <div class="textbox_div textbox_inline editmode" id="Full_Name">
+                            <label class="textbox_label"><b>Full Name</b></label>
+                            <p>{{patient.fullname}}</p>
+                        </div><br>
+                        
+                        <div class="textbox_div textbox_inline editmode field hide" id="First_Name">
+                          <label class="textbox_label"><b>Gender</b></label>
+                           <p>{{patient.gender}}</p>
+                        </div><br>
+                        
+                        <div class="textbox_div textbox_inline editmode field hide" id="Last_Name">
+                            <label class="textbox_label"><b>Age</b></label>
+                            <p>{{patient.age}}</p>
+                            </div>
+                            </div>
+                            <div class= column>
+                                <div class="row" tabindex="0">				
+                                    <div class="textbox_div textbox_inline editmode" id="Full_Name">
+                                        <label class="textbox_label"><b>E-Mail</b></label>
+                                        <p>{{patient.email}}</p>
+                                    </div><br>
+                                    
+                                    <div class="textbox_div textbox_inline editmode field hide" id="First_Name">
+                                      <label class="textbox_label"><b>Phone Number</b></label>
+                                       <p>{{patient.phone}}</p>
+                                    </div><br>
+                                    
+                                    <div class="textbox_div textbox_inline editmode field hide" id="Last_Name">
+                                        <label class="textbox_label"><b>Address</b></label>
+                                        <p>{{patient.address}}</p>
+                                        </div>
+                            </div>
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+	<!-- <script src="js/jquery.steps.js"></script> -->
+    <script src="{{ url_for('static', filename='homePage/anime.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='homePage/script.js') }}"></script>
+	<script src="{{url_for('static', filename='patientDashboard/script.js')}}"></script>
+    <script src="{{url_for('static', filename='patientDashboard/index.js')}}"></script>
+</body>
+</html>

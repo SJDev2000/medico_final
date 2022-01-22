@@ -1,0 +1,135 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+/* Homepage CSS */
+
+ul{
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.nav-item{
+    list-style: none;
+    margin-right: 2em;
+    color: white;
+    font-size: 1.5em;
+}
+.nav-item:first-child{
+    margin-right: auto;
+}
+.nav-item:nth-child(2){
+    margin-right: 63%;
+}
+.nav-item:nth-child(3){
+    margin-right: 14px;
+}
+.nav-item:nth-child(4){
+    color: rgb(22,22,22);
+}
+.nav-item:nth-child(5){
+    margin-right: 10px;
+}
+.nav-item button{
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.7em;
+    background-color: rgb(88,68,244);
+    color: rgb(255,255,255);
+}
+.nav-item button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.nav-item svg:hover{
+    cursor: pointer;
+}
+.svg-back{
+    position: relative;
+    left: 200px;
+}
+a{
+    text-decoration: none;
+    color: rgb(22,22,22);
+    font-size: 2.2em;
+    font-family: sans-serif;
+}
+
+
+/* Preloading animation CSS */
+
+.preloader{
+    position: fixed;
+    top: 0;
+    background: linear-gradient(90deg, rgba(150,150,247,1) 35%, rgba(100,213,236,1) 100%);
+    width: 100%;
+    height: 100vh;
+    transform: opacity 0.5s ease;
+    z-index: 2;
+}
+
+#logo{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    animation: fill 0.5s ease forwards 2.5s;
+}
+
+#logo path:nth-child(1){
+    stroke-dasharray: 897.2366333007812;
+    stroke-dashoffset: 897.2366333007812;
+    animation: anim 2s ease forwards;
+}
+#logo path:nth-child(2){
+    stroke-dasharray: 607.7852172851562;
+    stroke-dashoffset: 607.7852172851562;
+    animation: anim 2s ease forwards 0.3s;
+}
+#logo path:nth-child(3){
+    stroke-dasharray: 616.7125854492188;
+    stroke-dashoffset: 616.7125854492188;
+    animation: anim 2s ease forwards 0.6s;
+}
+#logo path:nth-child(4){
+    stroke-dasharray: 231.8919677734375;
+    stroke-dashoffset: 231.8919677734375;
+    animation: anim 2s ease forwards 0.9s;
+}
+#logo path:nth-child(5){
+    stroke-dasharray: 480.2248840332031;
+    stroke-dashoffset: 480.2248840332031;
+    animation: anim 2s ease forwards 1.2s;
+}
+#logo path:nth-child(6){
+    stroke-dasharray: 527.5387573242188;
+    stroke-dashoffset: 527.5387573242188;
+    animation: anim 2s ease forwards 1.5s;
+}
+
+.preloader-finish{
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes anim {
+    to{
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fill {
+    from{
+        fill: transparent;
+    }
+    to{
+       fill: black;
+    }
+}

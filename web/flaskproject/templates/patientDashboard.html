@@ -1,0 +1,247 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic </title>
+    <link rel='stylesheet' href="{{url_for('static', filename='doctorDashboard/style2.css')}}" />
+    <link rel='stylesheet' href="{{url_for('static', filename='doctorDashboard/style.css')}}" />
+    <style>
+        .innerTable {
+            border: 2px solid black;
+            border-collapse: collapse;
+            margin-top: 10%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid;
+            padding: 10px;
+            box-shadow: 5px 10px #888888;
+        }
+
+        .innerTable th,
+        .innerTable td {
+            padding: 5px;
+            text-align: left;
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="menu-wrapper">
+        <div class="sidebar-header">
+            <div class="sideBar">
+                <div><img
+                        src='https://img.icons8.com/external-filled-outline-satawat-anukul/64/000000/external-medical-medical-filled-outline-filled-outline-satawat-anukul-40.png' />
+                </div>
+                <ul>
+                    <a style="text-decoration: none; color: white;" href="/patientDashboard">
+                        <li class="selected"><i class="fas fa-home"></i><label>Dashboard</label></li>
+                    </a>
+                    <a style="text-decoration: none; color: white;" href="/updateProfile">
+                        <li><i class="fas fa-user-md"></i><label>Profile</label></li>
+                    </a>
+                    <a style="text-decoration: none; color: white;" href="/doctorProfiles">
+                        <li><i class="fas fa-user-md"></i><label>Doctors</label></li>
+                    </a>
+                    <a style="text-decoration: none; color: white;" href="/vitalProfiles">
+                        <li><i class="fas fa-user-md"></i><label>Vitals</label></li>
+                    </a>
+                </ul> <span class="cross-icon"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="backdrop"></div>
+            <div class="content">
+                <header>
+                    <div class="menu-button" id='desktop'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="menu-button" id='mobile'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <svg style="margin-left:75%;" class="modesvg" width="45" height="45" viewBox="0 0 55 55" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path class="sun"
+                            d="M55 27.5C55 42.6878 42.6878 55 27.5 55C12.3122 55 0 42.6878 0 27.5C0 12.3122 12.3122 0 27.5 0C42.6878 0 55 12.3122 55 27.5Z"
+                            fill="#FBF56E" />
+                    </svg>
+                    <button onclick="window.location.href='/patientLogout'" class="button-69 button-31" role="button"><i
+                            class="fas fa-sign-out-alt"></i></button>
+
+                </header>
+                <div class="content-data">
+                    <div class="title">
+                        <h2>Dashboard</h2><br>
+                    </div>
+                    <div class="grid-container g1">
+                        <div class="grid-item item1">
+                            <h3>Welcome {{patient.fullname}} &#128512;</h3><br>
+                            <p style="color:rgb(22,22,22);">Your health is out utmost priority.</p>
+                            <p style="color:rgb(22,22,22);">Let's find you a doctor..</p><br>
+                            <button onclick="window.location.href='/doctorProfiles'" class="btn">Connect to
+                                Doctor.</button>
+                        </div>
+                        <div class="grid-item item2">
+                            <img src="{{url_for('static', filename='patientDashboard/dashImage.png')}}" alt="">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div>
+                        <h2>Prescriptions</h2><br>
+                    </div>
+                    <div class="g2">
+                        <table>
+                            <tr>
+                                <!-- <th>S No.</th> -->
+                                <th>Diagnosis</th>
+                                <th>Medication</th>
+                                <th>Doctor's Name</th>
+                                <th>Details</th>
+                            </tr>
+                            <!-- <tr>
+                                <td>1.</td>
+                                <td>13 Jan 2022</td>
+                                <td>Peter chaudhari</td>
+                                <td>12 PM</td>
+                                <td>
+                                    <a href="#popup1">
+                                        <button class="button-32"  role="button">view</button>
+                                    </a>
+                                </td>
+                            </tr> -->
+                            {% for prescription in prescriptions%}
+                            <tr>
+
+                                <td>{{prescription.diagnosisName}}</td>
+                                <td>{{prescription.medicationitem}}</td>
+                                <td>{{prescription.doctor.fullname}}</td>
+                                <td>
+                                    <a href="#{{prescription.diagnosisName}}">
+                                        <button class="button-32" role="button">view</button>
+                                    </a>
+
+                                </td>
+                                <div id="{{prescription.diagnosisName}}" class="overlay">
+                                    <div class="popup">
+
+                                        <a class="close" href="#">&times;</a>
+                                        <div class="content">
+                                            <h1>Precription Details</h1>
+                                            <br>
+                                            <div class="ttable">
+                                                <div class="table-row">
+                                                    <div class="table-cell">
+                                                        <b>Diagnosis Name</b>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        {{prescription.diagnosisName}}
+                                                    </div>
+
+                                                </div>
+                                                <div class="table-row">
+                                                    <div class="table-cell">
+                                                        <b>Severity</b>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        {{prescription.severity}}
+                                                    </div>
+
+                                                </div>
+                                                <div class="table-row">
+                                                    <div class="table-cell">
+                                                        <b>Medication Item</b>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        {{prescription.medicationitem}}
+                                                    </div>
+
+                                                </div>
+                                                <div class="table-row">
+                                                    <div class="table-cell">
+                                                        <b>Named Time Event</b>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        {{prescription.namedTimeEvent}}
+                                                    </div>
+
+                                                </div>
+                                                <div class="table-row">
+                                                    <div class="table-cell">
+                                                        <b>Dose Units</b>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        {{prescription.doseUnits}}
+                                                    </div>
+
+                                                </div>
+                                                <div class="table-row">
+                                                    <div class="table-cell">
+                                                        <b>Dose Volume</b>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        {{prescription.doseVolumne}}
+                                                    </div>
+
+                                                </div>
+                                                <div class="table-row">
+                                                    <div class="table-cell">
+                                                        <b>Frequency</b>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        {{prescription.frequency}}
+                                                    </div>
+
+                                                </div>
+                                                <div class="table-row">
+                                                    <div class="table-cell">
+                                                        <b>Interval</b>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        {{prescription.interval}}
+                                                    </div>
+
+                                                </div>
+                                                <div class="table-row">
+                                                    <div class="table-cell">
+                                                        <b>Repetition</b>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        {{prescription.repetetion}}
+                                                    </div>
+
+                                                </div>
+                                                <div class="table-row">
+                                                    <div class="table-cell">
+                                                        <b>Additional Notes</b>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        {{prescription.additionalInstructions}}
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tr>
+
+                            {% endfor %}
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='homePage/anime.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='homePage/script.js') }}"></script>
+    <script src="{{url_for('static', filename='patientDashboard/index.js')}}"></script>
+</body>
+
+</html>

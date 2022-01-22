@@ -1,0 +1,92 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic </title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="css/opensans-font.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css"> -->
+    <!-- <link rel="stylesheet" href="style (1).css" type="text/css">
+    <link rel="stylesheet" href="style2.css" type="text/css"> -->
+    
+    <link rel='stylesheet' href="{{url_for('static', filename='doctorDashboard/style.css')}}" />
+    <link rel='stylesheet' href="{{url_for('static', filename='doctorDashboard/style2.css')}}" />
+    <link rel='stylesheet' href="{{url_for('static', filename='patientDashboard/patientprof.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="menu-wrapper">
+        <div class="sidebar-header">
+            <div class="sideBar">
+                <div><img
+                        src='https://img.icons8.com/external-filled-outline-satawat-anukul/64/000000/external-medical-medical-filled-outline-filled-outline-satawat-anukul-40.png' />
+                </div>
+                <ul>
+                    <a style="text-decoration: none; color: white;" href="/doctorDashboard">
+                        <li><i class="fas fa-procedures"></i><label>Prescribe Patients</label></li>
+                    </a>
+                    <a style="text-decoration: none; color: white;" href="/myPatients">
+                        <li><i class="fas fa-user-injured"></i><label>My Patients</label></li>
+                    </a>
+                    <a style="text-decoration: none; color: white;" href="/doctorInfo">
+                        <li><i class="fas fa-user"></i><label>Profile</label></li>
+                    </a>
+                </ul> <span class="cross-icon"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="backdrop"></div>
+            <div class="content">
+                <header>
+                    <div class="menu-button" id='desktop'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="menu-button" id='mobile'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+
+                    <button onclick="window.location.href='/doctorLogout'" class="button-69 button-31" role="button"><i
+                            class="fas fa-sign-out-alt"></i></button>
+
+                </header>
+                <div class="container">
+                    <div class="content" style="background-color: white; padding-top: 10%;padding-left:12%" >
+                        <div class="row" style="background-color: #001629; color:white;font-weight: bolder; width:80%;display: flex;" >
+                            <div class="col">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoHjZ8TfcMrT1S5xsA8O5UErC-AWKq0KM0Mw&usqp=CAU" style="width: 250px; height: 250px; margin-top:40px; padding: 20% 10%">
+                                <div style="padding:10%"></div>
+                            </div>
+                            <div class="col" style="padding:10%">
+                                <div class="textbox_div textbox_inline editmode" id="Full_Name">
+                                    <label class="textbox_label"><b>Full Name</b></label>
+                                    <p>{{doctor.fullname}}</p>
+                                </div><br>
+    
+                                <div class="textbox_div textbox_inline editmode field hide" id="First_Name">
+                                    <label class="textbox_label"><b>Email</b></label>
+                                    <p>{{doctor.email}}</p>
+                                </div><br>
+    
+                                <div class="textbox_div textbox_inline editmode field hide" id="Last_Name">
+                                    <label class="textbox_label"><b>Description</b></label>
+                                    <p>{{doctor.desc}}</p>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                    
+                </div>
+               
+            </div>
+            <script src="{{url_for('static', filename='patientDashboard/script.js')}}"></script>
+            <script src="{{url_for('static', filename='patientDashboard/index.js')}}"></script>
+</body>
+
+</html>

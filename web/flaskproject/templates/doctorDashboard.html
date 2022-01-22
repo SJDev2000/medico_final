@@ -1,0 +1,121 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinic </title>
+
+  <link rel='stylesheet' href="{{url_for('static', filename='doctorDashboard/style2.css')}}" />
+  <link rel='stylesheet' href="{{url_for('static', filename='doctorDashboard/style.css')}}" />
+  <!-- <link rel='stylesheet' href="css/patientProfileStyle.css" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="menu-wrapper">
+    <div class="sidebar-header">
+
+      <div class="sideBar">
+
+        <div><img
+            src='https://img.icons8.com/external-filled-outline-satawat-anukul/64/000000/external-medical-medical-filled-outline-filled-outline-satawat-anukul-40.png' />
+        </div>
+
+
+        <ul>
+          <a style="text-decoration: none; color: white;" href="/doctorDashboard">
+            <li><i class="fas fa-procedures"></i><label>Prescribe Patients</label></li>
+          </a>
+          <a style="text-decoration: none; color: white;" href="/myPatients">
+            <li><i class="fas fa-user-injured"></i><label>My Patients</label></li>
+          </a>
+          <a style="text-decoration: none; color: white;" href="/doctorInfo">
+            <li><i class="fas fa-user"></i><label>Profile</label></li>
+          </a>
+          
+        </ul> <span class="cross-icon"><i class="fas fa-times"></i></span>
+
+      </div>
+
+      <div class="backdrop"></div>
+
+      <div class="content">
+        <header>
+
+          <div class="menu-button" id='desktop'>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="menu-button" id='mobile'>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <button onclick="window.location.href='/doctorLogout'" class="button-69 button-31" role="button"><i class="fas fa-sign-out-alt"></i></button>
+        </header>
+
+        <div class="content-data">
+          <div class="topnav">
+
+            <div class="search-container">
+              <!-- <form onClick="searchTable()"> -->
+              <input onkeyup="searchTable()" type="text" placeholder="Search.." id="myInput" name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+              <!-- </form> -->
+            </div>
+
+
+            <table id="myTable">
+
+              <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th></th>
+              </tr>
+              {% for patient in patients %}
+              <tr>
+                <td>{{patient.fullname}}</td>
+                <td>{{patient.age}}</td>
+                <td>{{patient.gender}}</td>
+                <td><button onclick="window.location.href='/prescribe/{{patient.id}}'" class="button-31"
+                    role="button">Prescribe</button></td>
+              </tr>
+              {% endfor %}
+              <!-- <tr>
+                          <td>Saiyam</td>
+                          <td>Gandhi</td>
+                          <td>pubg</td>
+                          <td><button class="button-31" role="button">Prescribe</button></td>
+                        </tr>
+                        <tr>
+                          <td>Backend</td>
+                          <td>Jha</td>
+                          <td>omega variant</td>
+                          <td><button class="button-31" role="button">Prescribe</button></td>
+                        </tr>
+                        <tr>
+                          <td>Chocolate</td>
+                          <td>Brown</td>
+                          <td>$250</td>
+                          <td><button class="button-31" role="button">Prescribe</button></td>
+                        </tr> -->
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- <script src="js/jquery.steps.js"></script>
+	<script src="js/main.js"></script> -->
+      <script src="{{url_for('static', filename='patientDashboard/index.js')}}"></script>
+      <script src="{{url_for('static', filename='doctorDashboard/search.js')}}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic </title>
+    <link rel='stylesheet' href="{{url_for('static', filename='doctorDashboard/style2.css')}}" />
+    <link rel='stylesheet' href="{{url_for('static', filename='doctorDashboard/style.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="menu-wrapper">
+        <div class="sidebar-header">
+            <div class="sideBar">
+                <div><img src='https://img.icons8.com/external-filled-outline-satawat-anukul/64/000000/external-medical-medical-filled-outline-filled-outline-satawat-anukul-40.png' /></div>
+                <ul>
+                    <a style="text-decoration: none; color: white;" href="/patientDashboard"><li class="selected"><i class="fas fa-home"></i><label>Dashboard</label></li></a>
+                    <a style="text-decoration: none; color: white;" href="/updateProfile"><li><i class="fas fa-user-md"></i><label>Profile</label></li></a>
+                    <a style="text-decoration: none; color: white;" href="/doctorProfiles"><li><i class="fas fa-user-md"></i><label>Doctors</label></li></a>
+                    <a style="text-decoration: none; color: white;" href="/vitalProfiles"><li><i class="fas fa-user-md"></i><label>Vitals</label></li></a>
+                    <!-- <li><i class="fas fa-phone-alt"></i><label>Contact</label></li> -->
+                    <!-- <li><i class="fas fa-user"></i><label><a style="text-decoration: none;" href="/doctorProfiles">About us</a></label></li> -->
+                    <!-- <li><i class="fas fa-cog"></i><label>Setting</label></li> -->
+                </ul> <span class="cross-icon"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="backdrop"></div>
+            <div class="content">
+                <header>
+                    <div class="menu-button" id='desktop'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="menu-button" id='mobile'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <svg style="margin-left:75%;" class="modesvg" width="45" height="45" viewBox="0 0 55 55" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path class="sun"
+                            d="M55 27.5C55 42.6878 42.6878 55 27.5 55C12.3122 55 0 42.6878 0 27.5C0 12.3122 12.3122 0 27.5 0C42.6878 0 55 12.3122 55 27.5Z"
+                            fill="#FBF56E" />
+                    </svg>
+          <button onclick="window.location.href='/patientLogout'" class="button-69 button-31" role="button"><i class="fas fa-sign-out-alt"></i></button>
+
+                </header>
+                <div class="content-data"> 
+                    
+                    <div class="container">
+                        
+                        <main class="grid">
+                            {%for doctor in doctors%}
+                            <article>
+                                <img src="{{doctor.image}}" alt="">
+                                <div class="text">
+                                    <br>
+                                    <h3>{{doctor.fullname}}</h3><br>
+                                    <p>{{doctor.desc}}</p><br>
+                                </div>
+                            </article>
+                            {%endfor%}
+                            <!-- <article>
+                                <img src="{{url_for('static', filename='patientDashboard/doctor2.jpeg')}}" alt="">
+                                <div class="text">
+                                    <br>
+                                    <h3>card 1</h3><br>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe odio fugiat natus!</p><br>
+                                    <button>button-2</button>
+                                </div>
+                            </article>
+                            <article>
+                                <img src="{{url_for('static', filename='patientDashboard/doctor3.jpeg')}}" alt="">
+                                <div class="text">
+                                    <br>
+                                    <h3>card 1</h3><br>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe odio fugiat natus!</p><br>
+                                    <button>button-3</button>
+                                </div>
+                            </article> -->
+                        </main>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='homePage/anime.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='homePage/script.js') }}"></script>
+    <script src="{{url_for('static', filename='patientDashboard/index.js')}}"></script>
+</body>
+</html>

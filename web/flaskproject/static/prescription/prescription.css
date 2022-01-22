@@ -1,0 +1,122 @@
+body{
+    padding-left: 10%;
+    font-family: Georgia, serif;
+    font-size: 20px;
+}
+h3{
+    background-color:#8b91bd;
+    padding:10px 100px 0 40px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-weight: bolder;
+}
+span{
+    padding-right: 235px;
+    font-weight: bolder;
+}
+input{
+    border-radius: 4px;
+    border: 1px solid grey;
+}
+input{
+    background-color: white;
+}
+span{
+    vertical-align: top; display: inline-block; min-width: 160px;
+}
+#freq{
+    width:30px
+}
+.frequency{
+    display:flex ;
+
+}
+.form{
+    padding-right: 10%;
+    padding-left: 15%;
+}
+
+img{
+    padding-left: 25%;
+    width:65%;
+}
+textarea{
+    border-radius: 4px;
+    border: 1px solid grey;
+}
+#ext-gen128{
+    padding-right: 100px;
+}
+ext-gen1134{
+    padding-right: 10px;
+}
+option{
+    padding-right: 250px;
+}
+#ext-gen2133{
+    padding-right: 229px;
+}
+.empty{
+    padding-bottom: 4%;
+}
+label{
+    padding-right: 210px;
+    font-weight: bolder;
+}
+.icon2{
+    padding-right: 257px ;
+}
+.icon3{
+    padding-right: 227px;
+}
+.icon4{
+    padding-right: 237px;
+}
+.icon5{
+    padding-right: 234px;
+}
+.icon6{
+    padding-right: 230px;
+}
+#name1{
+    padding-right: 194px;
+}
+#name2{
+    padding-right: 273px;
+}
+#name3{
+    padding-right: 254px;
+}
+
+#name5{
+    padding-right: 275px;
+}
+#name6{
+    padding-right: 298px;
+}
+name4{
+    padding-right: 205px;
+}
+#name7{
+    padding-right: 303px;
+}
+#name8{
+    padding-right: 222px;
+}
+a{
+    padding-left: 51%;
+}
+#button{
+    padding:7px 73px;
+    background-color: #8d92b8;
+    font-weight: bold;
+}
+ex{
+    padding-right: 250px;
+}
+.scroll2{
+    padding-right: 130px;
+}
+.severe{
+    padding-right: 90px;
+}

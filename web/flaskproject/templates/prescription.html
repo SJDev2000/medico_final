@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prescription Page</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='prescription/prescription.css')}}">
+</head>
+
+    
+    
+    
+
+
+
+<body>
+    <div class="container">
+        <div class="empty"></div>
+        <div class="row" >
+            
+            <h3 id="title" style="background-color: #8d92b8; padding-right:53%;padding-left:-7%" >MEDICO HEALTHCARE</h3>
+                
+            <img src="{{url_for('static', filename='prescription/undraw_medical_care_movn.png')}}"  >
+                
+                <div class="first-form">
+                        <form action="#" method="POST" style="padding: 18px;;background-color: rgb(243, 243, 243); width:150% ;">
+                           
+                        <h3>Vital Signs</h3> 
+                            <br> 
+                            
+                            <label class="icon1" for="bp" style="padding-right: 220px;">Blood Pressure:</label>
+                            <input type="text" id="bp" name="bp" placeholder="mmHg"><br><br>
+                            <label class="icon2"for="hr">Heart Rate:</label>
+                            <input  type="text" id="hr" name="hr" placeholder="bpm"><br><br>
+                            <label class="icon3" for="gl">Glucose Level:</label>
+                            <input  type="text" id="gl" name="gl" placeholder="mmol/L"><br><br>
+                            <label class="icon4" for="bc">Blood Count:</label>
+                            <input  type="text" id="bc" name="bc" placeholder="cmm"><br><br>
+                            <label  class="icon6" for="bt">Oxygen Level:</label>
+                            <input type="text" id="bt" name="bt" placeholder="Percentage %"><br><br>
+                            <label class="icon5" for="bw">Body Weight:</label>
+                            <input type="text" id="bw" name="bw" placeholder="Kg"><br><br>
+                            <br>
+                            <h3>Prescription Details</h3>
+                            <br><br>
+                            
+                            <span title="Identification of the problem or diagnosis, by name.&nbsp;
+                            Comment:&nbsp;Coding of the name of the problem or diagnosis with a terminology is preferred, where possible.&nbsp;
+                            " style="vertical-align: top; display: inline-block; min-width: 160px;" id="ex">Diagnosis name
+                            </span>
+                            <input type="text" id="dname" name="dname" placeholder="name of disease">
+                            <br><br>
+                            <span title="An assessment of the overall severity of the problem or diagnosis.&nbsp;
+                            Comment:&nbsp;If severity is included in the Problem/diagnosis name via precoordinated codes, this data element becomes redundant. Note: more specific grading of severity can be recorded using the Specific details SLOT.&nbsp;
+                            "  id="name7" >Severity
+                            </span>
+                            <select name="severe" class="severe" id="Med">
+                            <option value="none" selected>Select an Option</option>
+                            <option value="Mild">Mild</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="Severe">Severe</option>
+                            </select><br><br>
+                            <span title="Identification of the medication, vaccine or other therapeutic item being ordered.&nbsp;
+                                Comment:&nbsp;It is strongly recommended that the 'Medication item' be coded with a terminology capable of triggering decision support, where possible. The extent of coding may vary from the simple name of the medication item through to structured details about the actual medication pack to be used. Free text entry should only be used if there is no appropriate terminology available.&nbsp;
+                                " >Medication Item
+                            </span>
+                            <input type="text" id="dname" name="drugName" placeholder="Name of Medicine">
+                            <br><br>
+                            <span title="When to consume before or after taking Meal.&nbsp;
+                                Comment:&nbsp;e.g. 'Before Meal', 'After Meal'.&nbsp;"
+                                 id="name1">Named Time Events
+                            </span>
+                            <select  class="scroll2" name="timeEvent" id="time">
+                                <option value="Before Meal" selected>Before Meal</option>
+                                <option value="After Meal">After Meal</option>
+                            </select>
+                            <br><br>
+                            <span title="The value of the amount of the ingredient as a real number.&nbsp;
+                                Comment:&nbsp;e.g. 1, 1.5, 0.125&nbsp;"id="name2">Dose Units
+                            </span>
+                            <input type="text" id="munit" name="munit" placeholder="Number of mg/ml's"><br><br>
+                            <span title="The unit of the amount of medication or medication component.&nbsp;
+                                Comment:&nbsp;For example: 'mg', 'ml', 'IU'.
+                                Note: The value of the amount is recorded using the 'Amount' element.&nbsp;"
+                             id="name3">Dose Volume
+                            </span>
+                            <input type="text" id="dunit" name="dunit" placeholder="mg/ml">
+                            <br><br>
+                            <span title="The frequency as number of times per time period that the activity is to take place.&nbsp;
+                                Comment:&nbsp;For example: &quot;4 times per day&quot; or &quot;3 to 4 times per hour&quot;.&nbsp;"
+                                id="name5">Frequency
+                            </span>
+                            <input type="text" id="dunit" name="frequency" placeholder="per day"> 
+                            <br><br>
+                            <span title="The time interval or minimum and maximum range of an interval between each scheduled activity, limited to a single day.&nbsp;
+                                Comment:&nbsp;e.g. &quot;Every 4 hours&quot; or &quot;Every 4 to 6 hours&quot;.&nbsp;"
+                                id="name6">Interval
+                            </span>
+                            <input type="text" id="interval" name="interval" placeholder="In hours">
+                            <br><br>
+                            
+                            
+                            <span title="The interval between repetitions of the activity.&nbsp;
+                                Comment:&nbsp;e.g. 'Every 3 weeks'&nbsp;"
+                                id="name8">Repetition(days)
+                            </span>   
+                            <input type="text" id="repetition" name="repetition" placeholder="No. of days to repeat"><br><br>
+                            <span title="A text description of the substance  where it is not possible to describe this fully using numerical strengths and amounts.&nbsp;"
+                             id="name4" style="padding-right: 225px;">Additional Notes
+                            </span>
+                            <input type="text" id="description" name="description" placeholder="Enter Text here"><br><br>
+                                    
+                            <br>
+                            <div class="container">
+                                <input type="submit" id ="button" value="Prescribe">
+                            </div>
+                        </form>
+                        <br><br> 
+                        
+                        <br>
+                    </div>
+                    
+                </div>
+                
+            
+                
+                          
+                        
+            </div>
+        </div>
+    </div>
+</body>
+</html>

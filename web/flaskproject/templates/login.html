@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login_reg/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login_reg/main.css') }}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+	<style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+        :root {
+            --error-color: #dc3545;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+        }
+
+
+        .container {
+            background-color: #fff;
+            padding: 1em;
+            border-radius: 5px;
+            width: 600px;
+			padding-left: 48px;
+        }
+
+        .form {
+			padding-top: 120px;
+			padding-right: 0 20px;
+        }
+
+        .form h1 {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 20px;
+
+        }
+
+        .form-field {
+            margin-bottom: 5px;
+
+        }
+
+        .form-field label {
+            display: block;
+            color: rgb(61, 60, 60);
+            margin-bottom: 5px;
+        }
+
+        .form-field input {
+            border-bottom: solid 2px #1e1f1f;
+            padding: 8px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            display: block;
+            width: 90%;
+			background-color: #e5eef3;
+        }
+
+        .form-field input:focus {
+            outline: none;
+        }
+
+        .form-field.error input {
+            border-color: var(--error-color);
+        }
+
+        .form-field.success input {
+            border-color: var(--success-color);
+        }
+
+
+        .form-field small {
+            color: var(--error-color);
+        }
+    </style>
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+			<div class="wrap-login">
+				<div class="container" style="padding-bottom: 188px;    background-color: #e5eef3">
+					<form id="signup" class="form" action="/patientLogin" method="POST"> 
+						<span class="login-form-title p-b-43">
+						Welcome Back!
+					</span>
+			
+						<div class="form-field">
+							<label for="email">Email:</label>
+							<input type="text" name="email" id="email" autocomplete="off">
+							<small></small>
+						</div>
+			
+						<div class="form-field">
+							<label for="password">Password:</label>
+							<input type="password" name="password" id="password" autocomplete="off">
+							<small></small>
+						</div>	
+						<br>
+						<div class="container-login-form-btn">
+							<input type="submit" class="login-form-btn" id="btnsubmit" value="Login" >
+						</div>
+					</form>
+                    
+					<span>
+						<a id="attri" href="/createPatient" style="color: black; font-size: 18px; padding-left: 22%;">Haven't Registered yet</a>
+					</span>
+				</div>
+
+				<div class="login-more" style="background-image: url(https://cdni.iconscout.com/illustration/premium/thumb/online-healthcare-3420630-2862289.png);">
+					<div class="empty" style="padding-bottom: 10%;"></div>
+					<div class=row>
+						<div class="col-2"></div>
+						<div class="col-8">
+							<div class="login-content"  >
+								<h1 style="font-size: 45px;font-weight: bolder;">MEDICO</h1>
+								<br>
+								<h3 class="line-1 anim-typewriter"style="padding-left: 28px; color: white">Your health is our priority</h3>
+								<p  style="color: rgb(231, 222, 167);padding: 15px; font-size: 19px; ">India's Best Digital Health Consultation Platform, With More Than 1 Crore Patients Served. Our Tools Help Take Your Practice Online, Improve Patient Outcomes, And Save Time.</p>
+								<form action="/about" method="POST"style="padding-left: 15px;">  
+									<input id="about" type="submit" value="Want to Know More About Us" style="padding:10px; border-radius: 5px; background-color: blue; color: cornsilk; font-weight: bolder;">
+								</form>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		const usernameEl = document.querySelector('#username');
+		const emailEl = document.querySelector('#email');
+		const passwordEl = document.querySelector('#password');
+		const confirmPasswordEl = document.querySelector('#confirm-password');
+	
+		const form = document.querySelector('#signup');
+	
+	
+		const checkUsername = () => {
+	
+			let valid = false;
+	
+			const min = 3,
+				max = 25;
+	
+			const username = usernameEl.value.trim();
+	
+			if (!isRequired(username)) {
+				showError(usernameEl, 'Username cannot be blank.');
+			} else if (!isBetween(username.length, min, max)) {
+				showError(usernameEl, `Username must be between ${min} and ${max} characters.`)
+			} else {
+				showSuccess(usernameEl);
+				valid = true;
+			}
+			return valid;
+		};
+	
+	
+		const checkEmail = () => {
+			let valid = false;
+			const email = emailEl.value.trim();
+			if (!isRequired(email)) {
+				showError(emailEl, 'Email cannot be blank.');
+			} else if (!isEmailValid(email)) {
+				showError(emailEl, 'Email is not valid.')
+			} else {
+				showSuccess(emailEl);
+				valid = true;
+			}
+			return valid;
+		};
+	
+		const checkPassword = () => {
+			let valid = false;
+	
+	
+			const password = passwordEl.value.trim();
+	
+			if (!isRequired(password)) {
+				showError(passwordEl, 'Password cannot be blank.');
+			} else if (!isPasswordSecure(password)) {
+				showError(passwordEl, 'Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)');
+			} else {
+				showSuccess(passwordEl);
+				valid = true;
+			}
+	
+			return valid;
+		};
+	
+		const checkConfirmPassword = () => {
+			let valid = false;
+			// check confirm password
+			const confirmPassword = confirmPasswordEl.value.trim();
+			const password = passwordEl.value.trim();
+	
+			if (!isRequired(confirmPassword)) {
+				showError(confirmPasswordEl, 'Please enter the password again');
+			} else if (password !== confirmPassword) {
+				showError(confirmPasswordEl, 'The password does not match');
+			} else {
+				showSuccess(confirmPasswordEl);
+				valid = true;
+			}
+	
+			return valid;
+		};
+	
+		const isEmailValid = (email) => {
+			const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(email);
+		};
+	
+		const isPasswordSecure = (password) => {
+			const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+			return re.test(password);
+		};
+	
+		const isRequired = value => value === '' ? false : true;
+		const isBetween = (length, min, max) => length < min || length > max ? false : true;
+	
+	
+		const showError = (input, message) => {
+			// get the form-field element
+			const formField = input.parentElement;
+			// add the error class
+			formField.classList.remove('success');
+			formField.classList.add('error');
+	
+			// show the error message
+			const error = formField.querySelector('small');
+			error.textContent = message;
+		};
+	
+		const showSuccess = (input) => {
+			// get the form-field element
+			const formField = input.parentElement;
+	
+			// remove the error class
+			formField.classList.remove('error');
+			formField.classList.add('success');
+	
+			// hide the error message
+			const error = formField.querySelector('small');
+			error.textContent = '';
+		}
+	
+	
+		form.addEventListener('submit', function (e) {
+			// prevent the form from submitting
+			e.preventDefault();
+	
+            let isEmailValid = checkEmail(),
+				isPasswordValid = checkPassword()
+	
+			let isFormValid = isEmailValid &&
+				isPasswordValid 
+	
+			// submit to the server if the form is valid
+			if (isFormValid) {
+				document.getElementById("signup").submit();
+			}
+		});
+	
+	
+		const debounce = (fn, delay = 500) => {
+			let timeoutId;
+			return (...args) => {
+				// cancel the previous timer
+				if (timeoutId) {
+					clearTimeout(timeoutId);
+				}
+				// setup a new timer
+				timeoutId = setTimeout(() => {
+					fn.apply(null, args)
+				}, delay);
+			};
+		};
+	
+		form.addEventListener('input', debounce(function (e) {
+			switch (e.target.id) {
+				case 'username':
+					checkUsername();
+					break;
+				case 'email':
+					checkEmail();
+					break;
+				case 'password':
+					checkPassword();
+					break;
+			}
+		}));
+	</script>
+</body>
+ 
+</html>
