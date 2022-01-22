@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   web:
-    build: web
+    build: saiyam611/medico:latest
     restart: always
     ports:
       - 5000:5000
