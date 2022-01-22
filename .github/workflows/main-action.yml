@@ -42,7 +42,7 @@ jobs:
  
     - name: Docker push
       run: |
-        docker push saiyam611/medico
+        docker push saiyam611/medico:latest
         
   # Deploy to aws ec2 instance
   deploy:
