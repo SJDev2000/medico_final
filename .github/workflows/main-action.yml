@@ -40,5 +40,56 @@ jobs:
     - name: Docker push
       run: |
         docker push saiyam611/medico
+  
+  deploy:
+    needs:
+      - test-and-build
+    runs-on: ubuntu-latest
+
+    steps:
+      
+      - name: Install AWS CLI 
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install --update
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: CONNECT TO EC2
+        env:
+            PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+            HOSTNAME : ${{ secrets.HOSTNAME  }}
+            USER_NAME : ${{ secrets.USER_NAME  }}
+            
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          
+            sudo kill -9 $(sudo lsof -t -i:5000)
+            pwd
+            DIR="medico_final"
+            if [ -d "$DIR" ]; then
+              echo "DIRECTORY EXISTS"
+              cd medico_final
+              echo hi
+              git checkout master &&
+              git fetch --all &&
+              git reset --hard origin/master &&
+              git pull origin master
+              sudo docker-compose up -d --build
+            else
+              echo "NOT EXISTS"
+              cd medico_final
+              git clone https://github.com/SJDev2000/medico_final.git
+              echo hi
+              sudo docker-compose up -d --build
+            fi
+            '
     
       
