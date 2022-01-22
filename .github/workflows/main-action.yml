@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-
+# Test the flask app and then build
   test-and-build:
 
     runs-on: ubuntu-latest
