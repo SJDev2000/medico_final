@@ -76,6 +76,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           
             sudo kill -9 $(sudo lsof -t -i:5000)
+            sudo kill -9 $(sudo lsof -t -i:80)
+      
             pwd
             DIR="medico_final"
             if [ -d "$DIR" ]; then
