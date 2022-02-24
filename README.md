@@ -69,11 +69,8 @@ Pipeline is divided into two stages:
 
 * test-and-build - Run tests and build docker image upon successful test run, that will be published to Dockerhub
 * deploy - Deploys the latest image from dockerhub to EC2 instance.
-## Demo
 
-Website link - 
 
-http://ec2-54-80-211-110.compute-1.amazonaws.com
 ## Authors
 
 - [@Abhishek Jha](https://github.com/13AbhishekJha)
